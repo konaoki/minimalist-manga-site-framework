@@ -1,6 +1,6 @@
 # Minimalist Manga Site Framework
 
-A complete framework to get a manga site going. For: original web comics, scanlation, whatever. Includes: admin dashboard, e-reader, comments (using Disqus), Google Analytics. Site create using framework: [SiberOwl](http://siberowl.com)
+A complete framework to get a manga site going. For: original web comics, scanlation, whatever. Includes: admin dashboard, e-reader, comments (using Disqus), Google Analytics. Site created using framework: [SiberOwl](http://siberowl.com)
 
 ## Getting Started
 
