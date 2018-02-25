@@ -8,14 +8,14 @@ Open index.php, chapterPageTemplate.html, and mangaPageTemplate.html.
 
 Search "###" in those files and replace "###blah blah###" as necessary. 
 
-Open .htaccess and change 
+Open .htaccess (within 4RF5DAVN) and change 
 
 ```
 AuthUserFile /home/users/TO-YOUR-REPOSITORY/.htpassword" 
 ```
 to match your server.
 
-Open .htpassword and go to: [Htpasswd Generator](http://www.htaccesstools.com/htpasswd-generator/) to generate your entry.
+Open .htpassword (within 4RF5DAVN) and go to: [Htpasswd Generator](http://www.htaccesstools.com/htpasswd-generator/) to generate your entry.
 
 Replace
 
