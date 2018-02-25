@@ -28,6 +28,10 @@ Make changes to main.css as you wish.
 
 You're done!!
 
+## Improvements I Might Make in the Future
+
+I might make a simple dashboard to change the main parameters of the site for non-developer friendly setup.
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
