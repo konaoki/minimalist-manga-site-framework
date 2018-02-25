@@ -1,0 +1,79 @@
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<link rel="stylesheet" type="text/css" href="../../../main.css">
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<link rel="shortcut icon" type="image/png" href="###Favicon Url###">
+	<title>
+	</title>
+</head>
+	<!--Google Analytics -->
+	<!--###copy and paste google analytics JavaScript tracking snippet found here: https://developers.google.com/analytics/devguides/collection/analyticsjs/###-->
+	<!--End Google Analytics-->
+<body>
+	<div class='index-header'>
+		<a href='###Home Page Url###' style='text-decoration: none; color: black;'>
+			<img src='###Home Page Image Url###'></img>
+		</a>
+		<a href='###Home Page Url###' style='text-decoration: none; color: black;'>
+			<span>###Site Title###</span>
+		</a>
+	</div>
+	<div class='manga-container'>
+		<div class='manga-header'>
+			<img class='manga-image' src=""></img>
+			<div class='manga-title'>
+			</div>
+			<div class='manga-description'>
+				
+			</div>
+			<div class='manga-downloadlink'>
+				<span>Download link: </span>
+				<a href="" target='_blank'>
+
+				</a>
+			</div>
+		</div>
+		<ul>
+		<li class='chapters-list-label'>
+			Chapters
+		</li>
+		</ul>
+			<div id='disqus_thread'></div>
+	</div>
+		<script>
+	$('title').prepend(title);
+	$('.manga-title').prepend(title);
+	$('.manga-description').prepend(description);
+	$('.manga-downloadlink a').prepend('http://'+downloadUrl);
+	$('.manga-downloadlink a').attr('href','http://'+downloadUrl);
+	$('ul').append(chapString);
+	$('.manga-image').attr('src',imageUrl);
+	</script>
+
+	<!--###Copy and paste code generated from Disqus. Should look like below###-->
+	<!--
+	<script>
+
+			/**
+			*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+			*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+			/*
+			var disqus_config = function () {
+			this.page.url = $path;  // Replace PAGE_URL with your page's canonical URL variable
+			this.page.identifier = $path; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+			};
+			*/
+			(function() { // DON'T EDIT BELOW THIS LINE
+				var d = document, s = d.createElement('script');
+				s.src = 'https://example.com/embed.js';
+				s.setAttribute('data-timestamp', +new Date());
+				(d.head || d.body).appendChild(s);
+			})();
+			</script>
+			<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		-->
+
+		</body>
+		</html>

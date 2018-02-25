@@ -1,0 +1,66 @@
+<html>
+<body>
+INSTRUCTIONS:<br>
+1. Fill in the create new manga form and press submit<br>
+2. Go to siberowl.com to check if the manga has been added<br>
+3. Try creating new chapter (be careful, if you don't put in the manga title exactly the way you typed it, it's gonna throw an error)<br>
+4. Go to the manga page by clicking on the manga pic from siberowl.com and check if the chapter has been added to the list
+<br><br>
+MANGA<br>
+<form action="admin.php" method="post" enctype="multipart/form-data" target="_blank">
+	Title (case sensitive. YOU CAN'T CHANGE THIS!): <input type="text" name="manga_title"><br>
+	Description: <input type="text" name="manga_description"><br>
+	Mega download url: <input type="text" name="mega_download_url"><br>
+	Manga image:<br>
+	<input name="manga_image" type="file" /><br />
+	<input type="submit"><br>
+</form>
+
+<br><br>
+
+CHAPTER<br>
+<form action="admin.php" method="post" enctype="multipart/form-data" target="_blank">
+	Manga Title (case sensitive): <input type="text" name="chapter_manga_title"><br>
+	Chapter ID (Chapters will be ordered by this so use integer or decimal only. YOU CAN'T CHANGE THIS!): <input type="text" name="chapter_ID"><br>
+	Chapter Title: <input type="text" name="chapter_title"><br>
+    Select chapter images to upload:<br />
+	<input name="chapter_images[]" type="file" multiple="multiple" /><br />
+	<input type="submit" value="submit" />
+</form>
+<br><br>
+List of "chapter title-chapter id" by manga title
+<form action="list.php" method="post" enctype="multipart/form-data" target="_blank">
+	Manga Title (case sensitive): <input type="text" name="list_manga_title"><br>
+	<input type="submit" value="submit" />
+</form>
+<br><br>
+Delete Manga
+<form action="delete.php" method="post" enctype="multipart/form-data" target="_blank">
+	Manga Title (case sensitive. ALL CHAPTERS WITHIN WILL ALSO BE DELETED): <input type="text" name="delete_manga_title"><br>
+	<input type="submit" value="delete" />
+</form>
+<br><br>
+Delete Chapter
+<form action="delete.php" method="post" enctype="multipart/form-data" target="_blank">
+	Manga Title (case sensitive. ALL IMAGES WITHIN WILL ALSO BE DELETED): <input type="text" name="delete2_manga_title"><br>
+	Chapter ID: <input type="text" name="delete2_chapter_ID"><br>
+	<input type="submit" value="delete" />
+</form>
+<br><br>
+Update Manga Page function.php
+<form action="admin.php" method="post" enctype="multipart/form-data" target="_blank">
+	Manga Title (case sensitive): <input type="text" name="update1_manga_title"><br>
+	<input type="submit" value="update_manga" />
+</form>
+<br><br>
+Update Chapter Page function.php
+<form action="admin.php" method="post" enctype="multipart/form-data" target="_blank">
+	Manga Title (case sensitive): <input type="text" name="update2_manga_title"><br>
+	Chapter ID: <input type="text" name="update2_chapter_ID"><br>
+	<input type="submit" value="update_chapter" />
+</form>
+
+
+
+</body>
+</html>

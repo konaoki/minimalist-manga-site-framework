@@ -1,0 +1,10 @@
+<FilesMatch "admin.html">
+AuthUserFile /home/users/TO-YOUR-REPOSITORY/.htpassword
+AuthName "Please login"
+AuthType basic
+require valid-user
+</FilesMatch>
+
+php_value upload_max_filesize 95M
+php_value post_max_size 100M
+php_value max_execution_time 864000

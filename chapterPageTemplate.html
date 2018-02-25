@@ -1,0 +1,307 @@
+<html>
+
+		<head>
+			<link rel='stylesheet' type='text/css' href='../../../main.css'>
+			<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+			<link rel="shortcut icon" type="image/png" href="###Favicon Url###">
+			<title></title>
+			<script>
+				$('title').prepend(title);
+			</script>
+		</head>
+		<body class='mangareader-body'>
+		<div class='mangareader-fixed'>
+			<div id='leftbox' class='hover-box'></div>
+			<div id='rightbox' class='hover-box'></div>
+			<div class='mangareader-container'>
+				<button class="scroll-switch-button" onclick="switchScrollDirection()"></button>
+			</div>
+			
+		</div>
+				<!--Google Analytics -->
+	<!--###copy and paste google analytics JavaScript tracking snippet found here: https://developers.google.com/analytics/devguides/collection/analyticsjs/###-->
+	<!--End Google Analytics-->
+		<script>
+		if(localStorage['readDir']==null)
+		{
+			localStorage['readDir']="leftToRight";
+		}
+		var dir='left';
+		if(localStorage['readDir']=="leftToRight")
+		{
+			dir='left'; //english
+			//console.log("english");
+		}
+		else if(localStorage['readDir']=="rightToLeft")
+		{
+			dir='right'; //japanese
+			//console.log("japanese");
+		}
+		function switchScrollDirection()
+		{
+			if(localStorage['readDir']=="leftToRight")
+			{
+				localStorage['readDir']="rightToLeft"; //japanese reading
+				dir='right'; //japanese
+			}
+			else if(localStorage['readDir']=="rightToLeft")
+			{
+				localStorage['readDir']="leftToRight"; //english reading
+				dir='left'; //english
+			}
+			alert("You've switched the reading direction. Gonna reload.");
+			location.reload();
+		}
+		var getUrlParameter = function getUrlParameter(sParam) {
+		    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+		        sURLVariables = sPageURL.split('&'),
+		        sParameterName,
+		        i;
+
+		    for (i = 0; i < sURLVariables.length; i++) {
+		        sParameterName = sURLVariables[i].split('=');
+
+		        if (sParameterName[0] === sParam) {
+		            return sParameterName[1] === undefined ? true : sParameterName[1];
+		        }
+		    }
+		};
+		</script>
+		<script>
+		
+		for(var i=0; i<imageUrls.length; i++)
+		{
+			//$('.mangareader-container').add('img').attr('id','img'+i);
+			$('.mangareader-container').append('<img id=\"img'+i+'\" src=\"'+imageUrls[i]+'\" />');
+			$('#img'+i).css('visibility','hidden');
+			
+		}
+
+		var imgWidthPercent=0;
+		var pixelValue;
+		var currentIndex=0; //page
+		if(getUrlParameter('page')!=null)
+			currentIndex = getUrlParameter('page');
+		var isMobile=false;
+		var isSquare=true;
+		$(window).on('load',function () {
+			$('.mangareader-container').css('visibility','hidden');
+			resetImagePos();
+			resetImagePos(); //second time to update values
+			$('.mangareader-container').css('visibility','visible');
+		});
+
+		$(window).on('resize',function () {
+			resetImagePos();
+			resetImagePos(); //second time to update values
+		});
+
+		function resetImagePos()
+		{
+			if($(window).height()/$(window).width() > 1.42)
+			{
+				isMobile=true;
+				if(localStorage['readDir']=="leftToRight")
+				{
+					$('.scroll-switch-button').css('left','1vh');
+				}
+				else if(localStorage['readDir']=="rightToLeft")
+				{
+					$('.scroll-switch-button').css('right','1vh');
+				}
+					$('.scroll-switch-button').css('bottom','1vh');
+			}
+			else if($(window).height()/$(window).width() > 1.1)
+			{
+				//isSquare=true;
+				if(localStorage['readDir']=="leftToRight")
+				{
+					$('.scroll-switch-button').css('left','1vh');
+				}
+				else if(localStorage['readDir']=="rightToLeft")
+				{
+					$('.scroll-switch-button').css('right','1vh');
+				}
+				
+					$('.scroll-switch-button').css('bottom','1vh');
+				isMobile=false;
+			}
+			else
+			{
+				isMobile=false;
+				//isSquare=false;
+				if(localStorage['readDir']=="leftToRight")
+				{
+					$('.scroll-switch-button').css('left','-10vh');
+					$('.scroll-switch-button').css('bottom','47vh');
+				}
+				else if(localStorage['readDir']=="rightToLeft")
+				{
+					$('.scroll-switch-button').css('right','-10vh');
+					$('.scroll-switch-button').css('bottom','47vh');
+				}
+			}
+			if(!isMobile)
+			{
+				
+			}
+			var offSet=0;
+			for(var i=0; i<imageUrls.length; i++)
+			{
+				imgWidthPercent=($('#img'+i).width()/$('#img'+i).parent().width())*100;
+
+				$('#img'+i).css(dir,offSet+'%');
+				offSet+=imgWidthPercent;
+				if(!isMobile)
+				{
+					$('#img'+i).height('100%');
+					$('#img'+i).width('auto');
+					
+				}
+				else
+				{
+					
+					$('#img'+i).width('100%');
+					$('#img'+i).height('auto');
+					$('.mangareader-container').css(dir,50-(imgWidthPercent/2)+'%');
+				}
+				if(!isSquare)
+				{
+					$('.mangareader-container').css(dir,50-imgWidthPercent+'%');
+				}
+				else
+				{
+					$('.mangareader-container').css(dir,50-(imgWidthPercent/2)+'%');	
+				}
+				$('#img'+i).css('visibility','visible');
+			}
+			
+			updatePosition();
+		}
+		
+		function flipNext()
+		{
+			if(currentIndex<imageUrls.length - 0.6)
+			{
+				if(isSquare)
+				{
+					currentIndex++;
+				}
+				else
+				{
+					currentIndex+=2;
+				}
+				updatePosition();
+			}
+			
+		}
+		function flipPrevious()
+		{
+
+			if(currentIndex>0)
+			{
+				if(isSquare)
+				{
+					currentIndex--;
+				}
+				else
+				{
+					currentIndex-=2;
+				}
+					
+				updatePosition();
+			}
+		}
+		function updatePosition()
+		{
+			var pageUrl = '?page=' + currentIndex;
+			window.history.pushState('', '', pageUrl);
+			//$('.mangareader-container').css('display','none');
+			var totalWidthPercent=0;
+			for(var i=0; i<currentIndex; i++)
+			{
+				totalWidthPercent-=($('#img'+i).width()/$('#img'+i).parent().width())*100
+			}
+			imgWidthPercent=($('#img'+currentIndex).width()/$('#img'+currentIndex).parent().width())*100;
+			if(!isSquare)
+				$('.mangareader-container').css(dir,totalWidthPercent+(50-imgWidthPercent)+'%');
+			else
+				$('.mangareader-container').css(dir,totalWidthPercent+(50-(imgWidthPercent/2))+'%');
+			//$('.mangareader-container').css('display','block');
+		}
+		keyDown();
+		function keyDown(){
+			$(document).on('keydown', function(e) {
+				if(e.which == 37)
+				{
+					if(dir=='left')
+					{
+						flipPrevious();
+					}
+					else if(dir=='right')
+					{
+						flipNext();
+					}
+					
+					$( this ).off(e);
+					keyUp();
+				}
+				else if(e.which == 39)
+				{
+					if(dir=='left')
+					{
+						flipNext();
+					}
+					else if(dir=='right')
+					{
+						flipPrevious();
+					}
+					$( this ).off(e);
+					keyUp();
+				}
+				
+			});
+		}
+		function keyUp()
+		{
+			$(document).on('keyup', function(e) {
+				if(e.which == 37)
+				{
+  					keyDown();
+  					$( this ).off(e);
+  				}
+  				else if(e.which == 39)
+				{
+  					keyDown();
+  					$( this ).off(e);
+  				}
+  				
+			});
+		}
+		$('#leftbox').on('click', function(e) {
+			if(dir=='left')
+			{
+				flipPrevious();
+			}
+			else if(dir=='right')
+			{
+				flipNext();
+				//console.log("japanese go next");
+			}
+		});
+		$('#rightbox').on('click', function(e) {
+			if(dir=='left')
+			{
+				flipNext();
+			}
+			else if(dir=='right')
+			{
+				flipPrevious();
+			}
+		});
+
+		
+		
+		</script>
+		</body>
+	</html>
